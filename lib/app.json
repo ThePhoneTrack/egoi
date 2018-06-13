@@ -1,4 +1,38 @@
 {
-  "app_id": "egoi",
-  "name": "E-goi"
+    "app_id": "phonetrack",
+    "name": "PhoneTrack",
+    "description": {
+        "pt_BR": "Plataforma de call tracking que mensura ligações recebidas, auxiliando nas áreas de venda, gestão, atendimento e marketing da empresa.",
+        "en": "Call tracking platform that mensures received calls, helping sales teams, management, customer service and marketing of the company."
+    },
+    "website": "https://phonetrack.com.br",
+    "signup_url": "https://phonetrack.com.br/planos",
+    "api_base_uri": {
+        "production": {
+            "uri": "https://painel.phonetrack.com.br/api",
+            "label": "Produção",
+            "default": true
+        },
+        "homolog": {
+            "uri": "https://dev.phonetrack.com.br/api",
+            "label": "Homologação"
+        }
+    },
+    "authentication": {
+        "type": "pass_through_header",
+        "fields": [{
+            "name": "api_key",
+            "label": "Chave de acesso à API",
+            "mapping": "Authorization",
+            "prefix": "Bearer",
+            "type": "text",
+            "validations": [{
+                "name": "min_length",
+                "value": 20
+            }]
+        }],
+        "ping_request": {
+            "method": "/v1/hooks/ping"
+        }
+    }
 }
